@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo para Tompita</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://todohuertoyjardin.es/blog/wp-content/uploads/2014/03/como-cultivar-girasoles.jpg');
+            background-repeat: repeat;
+            background-size: 150px;
+            background-position: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: White; /* Texto inicial en negro */
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 36px; /* Texto más grande */
+            color: White;
+        }
+
+        #input-block, #final-message, .chiguiro-img {
+            display: none;
+        }
+
+        textarea {
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+            border: 2px solid #FFA500;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            resize: none;
+        }
+
+        #final-message {
+            font-size: 38px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        /* Estilo de las imágenes del chigüiro */
+        .chiguiro-img {
+            width: 150px; /* Tamaño de las imágenes */
+            position: absolute;
+        }
+
+        /* Posiciones para las 8 imágenes de los chigüiros */
+        .chiguiro-1 { top: 10%; left: 10%; }
+        .chiguiro-2 { top: 10%; right: 10%; }
+        .chiguiro-3 { bottom: 10%; left: 10%; }
+        .chiguiro-4 { bottom: 10%; right: 10%; }
+        .chiguiro-7 { left: 50%; top: 5%; transform: translateX(-50%); }
+        .chiguiro-8 { left: 50%; bottom: 5%; transform: translateX(-50%); }
+
+        #chiguiro {
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        /* Estilo del botón */
+        #click-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body ondblclick="changeText()">
+    <h1 id="main-text">¡HOLA TOMPITA!</h1>
+    
+    <!-- Imagen del chigüiro debajo del texto -->
+    <img id="chiguiro" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+
+    <div id="input-block">
+        <h2>¿Sabes qué día es hoy?</h2>
+        <textarea id="user-input" placeholder="Escribe aquí mi vida preciosa..."></textarea>
+    </div>
+
+    <!-- Mensaje final que aparece tras escribir y presionar enter -->
+    <div id="final-message"></div>
+    <button id="click-button" onclick="changeFinalMessage()">Clik acá amor</button>
+
+    <!-- Ocho imágenes de chigüiros que aparecerán rodeando el mensaje -->
+    <img class="chiguiro-img chiguiro-1" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+    <img class="chiguiro-img chiguiro-2" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+    <img class="chiguiro-img chiguiro-3" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+    <img class="chiguiro-img chiguiro-4" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+    <img class="chiguiro-img chiguiro-7" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+    <img class="chiguiro-img chiguiro-8" src="https://cuantoviven.net/wp-content/uploads/2015/01/Cuanto-viven-los-chiguiros-2.jpg" alt="Chigüiro">
+
+    <script>
+        function changeText() {
+            document.getElementById('main-text').style.display = 'none'; // Oculta el texto inicial
+            document.getElementById('input-block').style.display = 'block'; // Muestra el bloque de entrada de texto
+        }
+
+        // Detectar cuando se presiona la tecla "Enter"
+        document.getElementById('user-input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evitar que el "Enter" agregue una nueva línea en el textarea
+
+                // Cambiar el mensaje final
+                document.getElementById('final-message').textContent = 'Así es amor, hoy es el día de amor y amistad ❤️';
+                document.getElementById('final-message').style.display = 'block'; // Mostrar el mensaje
+
+                // Ocultar la primera imagen del chigüiro, el texto y la caja de texto
+                document.getElementById('chiguiro').style.display = 'none'; // Ocultar la imagen
+                document.getElementById('input-block').style.display = 'none'; // Ocultar el bloque de entrada
+
+                // Mostrar el botón "Clik acá amor"
+                document.getElementById('click-button').style.display = 'block';
+
+                // Mostrar las imágenes de los chigüiros
+                const chiguiroImages = document.querySelectorAll('.chiguiro-img');
+                chiguiroImages.forEach(img => img.style.display = 'block');
+
+                // Cambiar el fondo por una imagen de rosas
+                document.body.style.backgroundImage = "url('https://th.bing.com/th/id/R.c59cb77131d6b32bdbcab58ba1853f2d?rik=Bmc3jEMde1ssPg&riu=http%3a%2f%2f2.bp.blogspot.com%2f-QW1uodRP_9Q%2fUQcL8HNQAcI%2fAAAAAAAAA5A%2f_UORyj9qMAw%2fs1600%2fpeluche-feliz-dia-amor-amistad-2013.jpg&ehk=Ufk8U5qXeHH1Fp15XgurAC1pMBLc7WZrqq2d6aSNj1k%3d&risl=&pid=ImgRaw&r=0')";
+            }
+        });
+
+
+
+function changeFinalMessage() {
+        // Cambiar el contenido del mensaje final
+        document.getElementById('final-message').textContent = "Mi vida preciosa, lamento mucho no haber podido acompañarte hoy el día de amor y amistad, quiero que sepas que te amo con toda mi alma y estoy absolutamente enamorado de ti, celebro por tener una excelente novia y compartir mi vida a tu lado... Aún te tengo unos regalitos que darte en persona, sin embargo, espero te haya gustado la página que hice para ti y luego de esto, mira IG amorcito. Te amo mi vida ❤️";
+
+        // Ocultar las imágenes de los chigüiros
+        const chiguiroImages = document.querySelectorAll('.chiguiro-img');
+        chiguiroImages.forEach(img => img.style.display = 'none');
+
+
+        // Cambiar la imagen del fondo al hacer clic en el botón
+        document.body.style.backgroundImage = "url('https://img.freepik.com/premium-photo/capybara-with-bouquet-flowers-against-background-village-spring-card_659326-681.jpg')"; // Cambia esta URL por la que desees
+    }
+
+       document.getElementById('final-message').fontSize="100px";
+
+    </script>
+</body>
+</html>
